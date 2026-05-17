@@ -83,7 +83,7 @@ def make_weights_chart(signal: dict) -> go.Figure:
         text=[f"{v:.1f}%" for v in values], textposition="outside", cliponaxis=False,
     ))
     fig.update_layout(
-        title="Recommended Portfolio Weights (Probabilistic Blend)",
+        title="Recommended Weights (Probabilistic Blend)",
         xaxis=dict(range=[0, 120], showgrid=False, showticklabels=False, zeroline=False),
         yaxis=dict(autorange="reversed"),
         margin=dict(l=10, r=40, t=40, b=10),
@@ -99,21 +99,24 @@ def make_history_chart(hist: pd.DataFrame) -> go.Figure:
     prob_cols = [c for c in hist.columns if c.startswith("p_")]
     regime_labels = [c.replace("p_", "") for c in prob_cols]
 
+    # Parse to date so plotly shows YYYY-MM-DD ticks, not timestamps
+    dates = pd.to_datetime(hist["run_date"]).dt.date.astype(str)
+
     fig = go.Figure()
     for col, label in zip(prob_cols, regime_labels):
         fig.add_trace(go.Scatter(
-            x=hist["run_date"], y=hist[col] * 100,
+            x=dates, y=hist[col] * 100,
             name=label, mode="lines+markers",
             line=dict(color=REGIME_COLORS.get(label, "#888"), width=2),
-            marker=dict(size=6),
+            marker=dict(size=7),
         ))
     fig.update_layout(
         title="Regime Probability History",
-        yaxis=dict(title="Probability (%)", range=[0, 105]),
-        xaxis=dict(title="Signal Date"),
+        yaxis=dict(title="Probability (%)", range=[0, 105], gridcolor="#f0f0f0"),
+        xaxis=dict(title="Signal Date", type="category", tickangle=-30),
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-        margin=dict(l=10, r=10, t=50, b=10),
-        height=300, plot_bgcolor="white", paper_bgcolor="white",
+        margin=dict(l=10, r=10, t=50, b=50),
+        height=320, plot_bgcolor="white", paper_bgcolor="white",
         hovermode="x unified",
     )
     return fig
