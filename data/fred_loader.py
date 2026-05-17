@@ -15,9 +15,10 @@ def load_fred_data(
     """
     Returns
     -------
-    features : DataFrame  — standardised macro feature set for HMM
+    features : DataFrame  — macro feature set for HMM
                             columns: yield_curve, vix, unemployment,
-                                     inflation_yoy, indpro_yoy
+                                     inflation_yoy, indpro_yoy,
+                                     credit_spread, fedfunds_yoy, sentiment_yoy
     raw      : DataFrame  — all downloaded series + derived columns
     """
     print("  Connecting to FRED API...")
@@ -35,14 +36,22 @@ def load_fred_data(
     # Forward-fill tiny gaps (e.g. UNRATE is monthly already; VIX has no weekends issue at ME)
     raw = raw.ffill(limit=3)
 
-    # Derived macro features
-    raw["yield_curve"]    = raw["GS10"] - raw["GS2"]       # slope of the yield curve
+    # Derived macro features — original five
+    raw["yield_curve"]    = raw["GS10"] - raw["GS2"]
     raw["vix"]            = raw["VIXCLS"]
     raw["unemployment"]   = raw["UNRATE"]
     raw["inflation_yoy"]  = raw["CPIAUCSL"].pct_change(12) * 100
     raw["indpro_yoy"]     = raw["INDPRO"].pct_change(12) * 100
 
-    feature_cols = ["yield_curve", "vix", "unemployment", "inflation_yoy", "indpro_yoy"]
+    # New features to separate Expansion from Baseline
+    raw["credit_spread"]    = raw["BAA"] - raw["GS10"]          # risk appetite: low in expansion, spikes in stress
+    raw["fedfunds_yoy"]     = raw["FEDFUNDS"] - raw["FEDFUNDS"].shift(12)   # <0 = cutting, >0 = hiking
+    raw["sentiment_yoy"]    = raw["UMCSENT"].pct_change(12) * 100           # rising in expansion, flat in baseline
+
+    feature_cols = [
+        "yield_curve", "vix", "unemployment", "inflation_yoy", "indpro_yoy",
+        "credit_spread", "fedfunds_yoy", "sentiment_yoy",
+    ]
     features = raw[feature_cols].dropna()
 
     return features, raw

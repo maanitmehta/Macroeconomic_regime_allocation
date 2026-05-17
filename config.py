@@ -20,7 +20,8 @@ TICKER_NAMES = {
     "XLF": "Financials",
 }
 
-FRED_SERIES = ["GS10", "GS2", "VIXCLS", "UNRATE", "CPIAUCSL", "INDPRO"]
+FRED_SERIES = ["GS10", "GS2", "VIXCLS", "UNRATE", "CPIAUCSL", "INDPRO",
+               "BAA", "FEDFUNDS", "UMCSENT"]
 
 REGIME_LABELS = {0: "Stress", 1: "Expansion", 2: "Baseline"}
 REGIME_COLORS = {0: "#d62728", 1: "#2ca02c", 2: "#1f77b4"}

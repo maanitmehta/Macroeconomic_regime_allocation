@@ -6,8 +6,8 @@
     "label": "Stress"
   },
   "regime_probabilities": {
-    "Stress": 0.9494,
-    "Expansion": 0.0506,
+    "Stress": 0.9988,
+    "Expansion": 0.0012,
     "Baseline": 0.0
   },
   "weights_probabilistic": {
