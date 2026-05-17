@@ -1,0 +1,7 @@
+{
+  "pythonVersion": "3.9",
+  "venvPath": "/Users/maanitmehta/options_dashboard",
+  "venv": "venv",
+  "include": ["."],
+  "extraPaths": ["."]
+}
