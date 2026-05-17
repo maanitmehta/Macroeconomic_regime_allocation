@@ -73,8 +73,7 @@ def make_proba_chart(signal: dict) -> go.Figure:
 
     fig = go.Figure(go.Bar(
         x=values, y=labels, orientation="h",
-        marker=dict(color=colors, opacity=0.9,
-                    line=dict(color=[c + "44" for c in colors], width=0)),
+        marker=dict(color=colors, opacity=0.88),
         text=[f"<b>{v:.1f}%</b>" for v in values],
         textposition="outside", cliponaxis=False,
         textfont=dict(color=TEXT, size=12),
