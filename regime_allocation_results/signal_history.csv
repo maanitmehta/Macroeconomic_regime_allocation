@@ -1,0 +1,2 @@
+run_date,as_of,regime_id,regime_label,p_Stress,p_Expansion,p_Baseline,w_prob_SPY,w_prob_IWM,w_prob_XLU,w_prob_XLY,w_prob_XLK,w_prob_XLF,w_hard_SPY,w_hard_IWM,w_hard_XLU,w_hard_XLY,w_hard_XLK,w_hard_XLF
+2026-05-17,2026-05-31,0,Stress,0.9494,0.0506,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0

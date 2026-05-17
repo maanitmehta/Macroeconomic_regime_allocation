@@ -6,5 +6,13 @@ __pycache__/
 venv/
 *.egg-info/
 
-# Generated outputs — regenerated each run, not versioned
-regime_allocation_results/
+# Generated outputs — PNGs and full CSVs are large and regenerated each run
+regime_allocation_results/*.png
+regime_allocation_results/monthly_returns.csv
+regime_allocation_results/portfolio_weights_prob.csv
+regime_allocation_results/portfolio_weights_hard.csv
+regime_allocation_results/performance_metrics.csv
+
+# Signal files ARE tracked — dashboard reads them from GitHub
+# regime_allocation_results/latest_signal.json
+# regime_allocation_results/signal_history.csv

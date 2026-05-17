@@ -1,0 +1,29 @@
+{
+  "as_of": "2026-05-31",
+  "run_date": "2026-05-17",
+  "current_regime": {
+    "id": 0,
+    "label": "Stress"
+  },
+  "regime_probabilities": {
+    "Stress": 0.9494,
+    "Expansion": 0.0506,
+    "Baseline": 0.0
+  },
+  "weights_probabilistic": {
+    "SPY": 0.0,
+    "IWM": 0.0,
+    "XLU": 0.0,
+    "XLY": 0.0,
+    "XLK": 1.0,
+    "XLF": 0.0
+  },
+  "weights_hard_label": {
+    "SPY": 0.0,
+    "IWM": 0.0,
+    "XLU": 0.0,
+    "XLY": 0.0,
+    "XLK": 1.0,
+    "XLF": 0.0
+  }
+}
